@@ -209,10 +209,9 @@ SELECT * FROM BOOK_DETAILS WHERE id = ?;
 SELECT MAX(id) AS last_booking_id FROM BOOK_DETAILS;
 
 -- Retrieves the latest booking record
--- **Parameters:**
---   `id`: The unique identifier of the booking.
--- **Purpose:**
---   Allows user to check the latest booking.
+- **Parameters:**
+  - `id`: Unique identifier of booking records.
+- **Purpose:** Allows user to check the latest booking.
 
 ---
 
@@ -223,10 +222,9 @@ FROM BOOK_DETAILS
 WHERE user_id = :user_id;
 
 -- Retrieves all booking records associated with a given user.
--- **Parameters:**
---   `user_id`: The unique identifier of the user.
--- **Purpose:**
---   Allows users or admins to view all past and current bookings made by a specific user.
+- **Parameters:**
+  - `user_id`: Unique identifier of user.
+- **Purpose:** Allows users or admins to view all past and current bookings made by a specific user.
 
 
 
