@@ -21,6 +21,13 @@ Stores user credentials.
 | UNAME    | VARCHAR2(4000)    | Username                                        |
 | PASSWORD | VARCHAR2(4000)    | User's password (hashed recommended)            |
 
+#### Query to create the table:
+CREATE TABLE NUSER_DETAILS (
+    NUSERID NUMBER PRIMARY KEY,
+    UNAME VARCHAR2(4000),
+    PASSWORD VARCHAR2(4000)
+);
+
 ---
 
 ### 2. `ADMIN_DETAILS`
@@ -31,6 +38,13 @@ Stores admin credentials.
 | ADMINID  | NUMBER (PK)       | Unique admin ID                                 |
 | UNAME    | VARCHAR2(4000)    | Admin username                                  |
 | PASSWORD | VARCHAR2(4000)    | Admin password (hashed recommended)             |
+
+#### Query to create the table:
+CREATE TABLE ADMIN_DETAILS (
+    ADMINID NUMBER PRIMARY KEY,
+    UNAME VARCHAR2(4000),
+    PASSWORD VARCHAR2(4000)
+);
 
 ---
 
@@ -49,6 +63,19 @@ Stores movie details.
 | IMAGE          | VARCHAR2(4000)    | Movie poster URL                              |
 | MOVIENAME      | VARCHAR2(4000)    | Movie name                                    |
 
+#### Query to create the table:
+CREATE TABLE MOVIE_DESC (
+    MOVIE_DESC_ID NUMBER PRIMARY KEY,
+    MOVIE_DESC VARCHAR2(2000),
+    TIME VARCHAR2(4000),
+    GENRE VARCHAR2(4000),
+    RATING VARCHAR2(4000),
+    LIKES VARCHAR2(4000),
+    YEAR VARCHAR2(4000),
+    IMAGE VARCHAR2(4000),
+    MOVIENAME VARCHAR2(4000)
+);
+
 ---
 
 ### 4. `MASTER1`
@@ -60,6 +87,14 @@ Stores movie show metadata.
 | MOVIE_NAME    | VARCHAR2(100)     | Movie name                                    |
 | THEATRE_NAME  | VARCHAR2(4000)    | Theatre name                                  |
 | TIMINGS       | VARCHAR2(4000)    | Show time                                     |
+
+#### Query to create the table:
+CREATE TABLE MASTER1 (
+    MOVIEID NUMBER PRIMARY KEY,
+    MOVIE_NAME VARCHAR2(100),
+    THEATRE_NAME VARCHAR2(4000),
+    TIMINGS VARCHAR2(4000)
+);
 
 ---
 
@@ -76,6 +111,18 @@ Stores seat availability and ticket prices.
 | B_CLASS_COST   | NUMBER(10,0)      | Ticket price for B-class                      |
 | C_CLASS_COST   | NUMBER(10,0)      | Ticket price for C-class                      |
 
+#### Query to create the table:
+CREATE TABLE SLAVE1 (
+    MOVIEID NUMBER,
+    A_CLASS NUMBER(10,0),
+    B_CLASS NUMBER,
+    C_CLASS NUMBER(10,0),
+    A_CLASS_COST NUMBER(10,0),
+    B_CLASS_COST NUMBER(10,0),
+    C_CLASS_COST NUMBER(10,0),
+    CONSTRAINT fk_slave_movie FOREIGN KEY (MOVIEID) REFERENCES MASTER1(MOVIEID)
+);
+
 ---
 
 ### 6. `BOOK_DETAILS`
@@ -91,6 +138,16 @@ Stores booking records.
 | TOTAL_PRICE   | NUMBER(10,0)      | Total booking cost                            |
 | URL           | VARCHAR2(4000)    | Ticket or QR code URL                         |
 
+#### Query to create the table:
+CREATE TABLE BOOK_DETAILS (
+    ID NUMBER(10,0) PRIMARY KEY,
+    MOVIENAME VARCHAR2(4000),
+    THEATRENAME VARCHAR2(4000),
+    TIMINGS VARCHAR2(4000),
+    SEATS_BOOKED VARCHAR2(4000),
+    TOTAL_PRICE NUMBER(10,0),
+    URL VARCHAR2(4000)
+);
 
 ---
 
